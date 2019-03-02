@@ -1,29 +1,24 @@
 from numpy import genfromtxt
 
 n_queens = 8
-input_file_name = 'in1.csv'
+input_file_name = 'test_a.csv'
 
-def num_of_culumn_threats(my_data):
-	threats = 0
+def num_of_column_and_row_threats(my_data):
+	column_threats = 0
+	row_threats = 0
 	for i in range(n_queens):
-		num_of_queens = 0
+		num_of_queens_column = 0
+		num_of_queens_row = 0
 		for j in range(n_queens):
 			if (my_data[j][1] == i + 1):
-				num_of_queens += 1
-		if (num_of_queens > 1):
-			threats += num_of_queens - 1
-	return threats
-
-def num_of_row_threats(my_data):
-	threats = 0
-	for i in range(n_queens):
-		num_of_queens = 0
-		for j in range(n_queens):
+				num_of_queens_column += 1
 			if (my_data[j][0] == i + 1):
-				num_of_queens += 1
-		if (num_of_queens > 1):
-			threats += num_of_queens - 1
-	return threats
+				num_of_queens_row += 1
+		if (num_of_queens_column > 1):
+			column_threats += num_of_queens_column - 1
+		if (num_of_queens_row > 1):
+			row_threats += num_of_queens_row - 1
+	return column_threats + row_threats
 
 # we could count number of rows or columns without queens and the answer would have been the same
 
@@ -42,8 +37,7 @@ def num_of_diameter_threats(my_data):
 	return threats
 
 def num_of_threats(my_data):
-	return num_of_row_threats(my_data) + num_of_culumn_threats(my_data) + num_of_diameter_threats(my_data)
-
+	return num_of_diameter_threats(my_data) + num_of_column_and_row_threats(my_data)
 
 #	moves:
 #	0	1	2
@@ -139,22 +133,36 @@ def print_grid(my_data):
 def copy_board(my_data):
 	temp = []
 	for i in range(n_queens):
-		temp.append([my_data[i][0], my_data[i][1]])
+		temp.append([int(my_data[i][0]), int(my_data[i][1])])
 	return temp
 
-def DFS(my_data, k):
-	print(k)
-	print_grid(my_data)
+def DFS(my_data, k, queen_no, move_no):
+	if (k > 5):
+		return 0
+	print(num_of_threats(my_data))
 	if (num_of_threats(my_data) == 0):
 		return my_data
-	for i in range(n_queens):
-		for j in range(num_of_moves):
-			if(move_if_possible(my_data, i, j)):
-				return(DFS(my_data, k + 1))
-				if (j < 4):
-					move_if_possible(my_data, i, j + 4)
-				else:
-					move_if_possible(my_data, i, j - 4)
+	if (queen_no < n_queens and move_no < num_of_moves):
+		move_if_possible(my_data, queen_no, move_no)
+		if (DFS(my_data, k + 1, queen_no + 1, move_no) != 0):
+			return my_data
+		if (DFS(my_data, k + 1, queen_no, move_no + 1) != 0):
+			return my_data
+		# return DFS(my_data, k + 1, queen_no + 1, move_no + 1)
+# doesn't work. the reason is almost obvious
+		if (move_no < 4):
+			move_if_possible(my_data, queen_no, move_no + 4)
+		else:
+			move_if_possible(my_data, queen_no, move_no - 4)
+	# for i in range(n_queens):
+	# 	for j in range(num_of_moves):
+	# 		if(move_if_possible(my_data, i, j)):
+	# 			return(DFS(my_data, k + 1))
+	# 			if (j < 4):
+	# 				move_if_possible(my_data, i, j + 4)
+	# 			else:
+	# 				move_if_possible(my_data, i, j - 4)
+	return 0
 
 
 
@@ -162,10 +170,9 @@ def DFS(my_data, k):
 
 temp_data = genfromtxt(input_file_name, delimiter=',')
 data = copy_board(temp_data)
+# DFS(data, 0, 0, 0)
 print_grid(data)
-print(num_of_threats(data))
-print(end = '\n\n\n')
-print_grid(DFS(data, 0))
+
 
 
 
