@@ -2,7 +2,7 @@ from numpy import genfromtxt
 from itertools import combinations as com
 from time import time
 n_queens = 8
-input_file_name = 'test_b.csv'
+input_file_name = 'in3.csv'
 
 def num_of_column_and_row_threats(my_data):
 	column_threats = 0
@@ -173,7 +173,7 @@ def IDS(root_grid):
 def DFS(root_grid, limit):
 	s = [(root_grid, 0)]
 	all_moves = 0
-	while len(s) > 0:
+	while (len(s) > 0):
 		all_moves += 1
 		parent_grid, parent_level = s.pop(0)
 		if parent_level > limit:
@@ -200,7 +200,7 @@ def A_star(root_grid):
 		node = nodes.pop(min_index)
 		level = levels.pop(min_index)
 		measure = measures.pop(min_index)
-		if (num_of_threats == 0):
+		if (num_of_threats(node) == 0):
 			return node, level, moves
 		temp = generate_next_children(node)
 		for i in range(len((temp))):
