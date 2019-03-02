@@ -2,7 +2,7 @@ from numpy import genfromtxt
 from itertools import combinations as com
 from time import time
 n_queens = 8
-input_file_name = 'test_a.csv'
+input_file_name = 'test_b.csv'
 
 def num_of_column_and_row_threats(my_data):
 	column_threats = 0
@@ -57,7 +57,6 @@ def danger(my_data):
 #	7		3
 #	6	5	4 
 num_of_moves = 8
-
 
 def is_duplicate_element(my_data, element):
 	num_of_existed = 0
@@ -162,19 +161,6 @@ def generate_next_children(my_data):
 	return children
 
 
- # def DFS(my_data, k, m):
-	# m += 1
-	# # print(k)
-	# if (k > 3):
-	# 	return 0
-	# if (danger(my_data) == 0):
-	# 	return my_data
-	# next_gen = generate_next_children(my_data)
-	# for i in next_gen:
-	# 	n += 1
-	# 	DFS(i, k + 1, m)
-
-
 def IDS(root_grid):
 	i = 1
 	while (True):
@@ -186,22 +172,51 @@ def IDS(root_grid):
 
 def DFS(root_grid, limit):
 	s = [(root_grid, 0)]
-	i = 0
+	all_moves = 0
 	while len(s) > 0:
-		i += 1
+		all_moves += 1
 		parent_grid, parent_level = s.pop(0)
 		if parent_level > limit:
 			continue
-		if (danger(parent_grid) == 0):
-			return parent_grid, limit, i
+		if (num_of_threats(parent_grid) == 0):
+			return parent_grid, limit, all_moves
 		for child_grid in generate_next_children(parent_grid):
 			s.append((child_grid, parent_level + 1))
+
+# def BFS()
+
+
+
+
+
+def A_star(root_grid):
+	nodes = [root_grid]
+	levels = [0]
+	measures = [0 + num_of_threats(root_grid)]
+	moves = 0
+	while(True):
+		moves += 1
+		min_index = measures.index(min(measures))
+		node = nodes.pop(min_index)
+		level = levels.pop(min_index)
+		measure = measures.pop(min_index)
+		if (num_of_threats == 0):
+			return node, level, moves
+		temp = generate_next_children(node)
+		for i in range(len((temp))):
+			nodes.append(temp[i])
+			levels.append(level + 1)
+			measures.append(level + 1 + num_of_threats(temp[i]))
+
+
+
+
 
 
 temp_data = genfromtxt(input_file_name, delimiter=',')
 data = copy_board(temp_data)
 t1 = time()
-a, b, c = (IDS(data))
+a, b, c = (A_star(data))
 t2 = time()
 if (a != None):
 	print_grid(a)
