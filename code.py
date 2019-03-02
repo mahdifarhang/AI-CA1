@@ -1,5 +1,6 @@
 from numpy import genfromtxt
-
+from itertools import combinations as com
+from time import time
 n_queens = 8
 input_file_name = 'test_a.csv'
 
@@ -29,7 +30,8 @@ def num_of_diameter_threats(my_data):
 		for j in range(i + 1, n_queens):
 			if (j in blacklist):
 				continue
-			if (abs(data[i][0] - data[j][0]) == abs(data[i][1] - data[j][1])):
+			if (abs(my_data[i][0] - my_data[j][0]) == abs(my_data[i][1] - my_data[j][1])):
+				# print(i, j)
 				threats += 1
 				blacklist.append(j)
 # if the abs wasn't there, we could get num of main diameter threats
@@ -38,6 +40,17 @@ def num_of_diameter_threats(my_data):
 
 def num_of_threats(my_data):
 	return num_of_diameter_threats(my_data) + num_of_column_and_row_threats(my_data)
+
+def danger(my_data):
+	dangers = 0
+	for i in range(n_queens):
+		for j in range(i + 1, n_queens):
+			if(my_data[i][0] == my_data[j][0] or my_data[i][1] == my_data[j][1] or abs(my_data[i][0] - my_data[j][0]) == abs(my_data[i][1] - my_data[j][1])):
+				dangers += 1
+	return int(dangers / 2)
+
+
+
 
 #	moves:
 #	0	1	2
@@ -135,65 +148,65 @@ def copy_board(my_data):
 	for i in range(n_queens):
 		temp.append([int(my_data[i][0]), int(my_data[i][1])])
 	return temp
-
-def DFS(my_data, k, queen_no, move_no):
-	if (k > 5):
-		return 0
-	print(num_of_threats(my_data))
-	if (num_of_threats(my_data) == 0):
-		return my_data
-	if (queen_no < n_queens and move_no < num_of_moves):
-		move_if_possible(my_data, queen_no, move_no)
-		if (DFS(my_data, k + 1, queen_no + 1, move_no) != 0):
-			return my_data
-		if (DFS(my_data, k + 1, queen_no, move_no + 1) != 0):
-			return my_data
-		# return DFS(my_data, k + 1, queen_no + 1, move_no + 1)
-# doesn't work. the reason is almost obvious
-		if (move_no < 4):
-			move_if_possible(my_data, queen_no, move_no + 4)
-		else:
-			move_if_possible(my_data, queen_no, move_no - 4)
-	# for i in range(n_queens):
-	# 	for j in range(num_of_moves):
-	# 		if(move_if_possible(my_data, i, j)):
-	# 			return(DFS(my_data, k + 1))
-	# 			if (j < 4):
-	# 				move_if_possible(my_data, i, j + 4)
-	# 			else:
-	# 				move_if_possible(my_data, i, j - 4)
-	return 0
+def generate_next_children(my_data):
+	children = []
+	for i in range(n_queens):
+		for j in range(num_of_moves):
+			if(move_if_possible(my_data, i, j)):
+				# children.append([(q_pos if q_pos != parent_q else child_q) for q_pos in my_data])
+				children.append(copy_board(my_data))
+				if (j < 4):
+					move_if_possible(my_data, i, j + 4)
+				else:
+					move_if_possible(my_data, i, j - 4)
+	return children
 
 
+ # def DFS(my_data, k, m):
+	# m += 1
+	# # print(k)
+	# if (k > 3):
+	# 	return 0
+	# if (danger(my_data) == 0):
+	# 	return my_data
+	# next_gen = generate_next_children(my_data)
+	# for i in next_gen:
+	# 	n += 1
+	# 	DFS(i, k + 1, m)
 
+
+def IDS(root_grid):
+	i = 1
+	while (True):
+		result = DFS(root_grid, i)
+		if (result != None):
+			return result
+		i += 1
+
+
+def DFS(root_grid, limit):
+	s = [(root_grid, 0)]
+	i = 0
+	while len(s) > 0:
+		i += 1
+		parent_grid, parent_level = s.pop(0)
+		if parent_level > limit:
+			continue
+		if (danger(parent_grid) == 0):
+			return parent_grid, limit, i
+		for child_grid in generate_next_children(parent_grid):
+			s.append((child_grid, parent_level + 1))
 
 
 temp_data = genfromtxt(input_file_name, delimiter=',')
 data = copy_board(temp_data)
-# DFS(data, 0, 0, 0)
-print_grid(data)
-
-
-
-
-
-
-# k = 0
-# for i in range(n_queens):
-# 	for j in range(8):
-# 		threats = num_of_threats(data)
-# 		if(move_if_possible(data, i, j)):
-# 			if (num_of_threats(data) > threats):
-# 				if (j < 4):
-# 					move_if_possible(data, i, j + 4)
-# 				else:
-# 					move_if_possible(data, i, j - 4)
-# 				k += 1
-# 			else:
-# 				print_grid(data)
-# 				print(num_of_threats(data))
-# 				print()
-# 		else:
-# 			k += 1
-# print(k)
-
+t1 = time()
+a, b, c = (IDS(data))
+t2 = time()
+if (a != None):
+	print_grid(a)
+else:
+	print(None)
+print(b, 'level')
+print(c, 'all moves')
+print(t2 - t1, 'time')
