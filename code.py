@@ -235,14 +235,14 @@ def BFS(root_grid):
 
 
 
-input_file_name = 'test_b.csv'
+input_file_name = 'test_a.csv'
 
 temp_data = genfromtxt(input_file_name, delimiter=',')
 data = copy_board(temp_data)
 print(input_file_name)
 
 t1 = time()
-a, b, c = (BFS(data))
+a, b, c = (IDS(data))
 # c = all_moves
 t2 = time()
 print('result')
