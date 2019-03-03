@@ -29,7 +29,6 @@ def num_of_diameter_threats(my_data):
 			if (j in blacklist):
 				continue
 			if (abs(my_data[i][0] - my_data[j][0]) == abs(my_data[i][1] - my_data[j][1])):
-				# print(i, j)
 				threats += 1
 				blacklist.append(j)
 # if the abs wasn't there, we could get num of main diameter threats
@@ -46,9 +45,6 @@ def danger(my_data):
 			if(my_data[i][0] == my_data[j][0] or my_data[i][1] == my_data[j][1] or abs(my_data[i][0] - my_data[j][0]) == abs(my_data[i][1] - my_data[j][1])):
 				dangers += 1
 	return int(dangers)
-
-
-
 
 #	moves:
 #	0	1	2
@@ -116,7 +112,6 @@ def move_if_possible(my_data, queen_no, move_no):
 			return False
 		return True
 
-
 def move(my_data, queen_no, move_no):
 	if (move_no == 1):
 		my_data[queen_no] = [my_data[queen_no][0] - 1, my_data[queen_no][1]]
@@ -167,7 +162,6 @@ def generate_next_children(my_data):
 				move(my_data, i, (j + 4) % 8)
 	return children
 
-
 all_moves = 0
 def IDS(root_grid):
 	i = 1
@@ -176,7 +170,7 @@ def IDS(root_grid):
 	while (True):
 		result = DFS(root_grid, i)
 		if (result != None):
-			return result
+			return result, i, all_moves
 		i += 1
 
 def DFS(root_grid, limit):
@@ -231,9 +225,9 @@ def BFS(root_grid):
 			else:
 				v[str(node)] = 0
 			temp = generate_next_children(node)
-			for i in temp:
-				if (str(i) not in v):
-					nodes.append(i)
+			for i in range(len(temp)):
+				if (str(temp[i]) not in v):
+					nodes.append(temp[len(temp) - i - 1])
 					levels.append(level + 1)
 
 
@@ -241,23 +235,22 @@ def BFS(root_grid):
 
 
 
-input_file_name = 'test_a.csv'
+input_file_name = 'test_b.csv'
 
 temp_data = genfromtxt(input_file_name, delimiter=',')
 data = copy_board(temp_data)
 print(input_file_name)
-print_grid(data)
-print(num_of_threats(data))
-print()
+
 t1 = time()
 a, b, c = (BFS(data))
-print_grid(a)
+# c = all_moves
 t2 = time()
-# print('result')
-# if (a != None):
-# 	print_grid(a)
-# else:
-# 	print(None)
-# print('level = ' ,b)
-print('all moves =', all_moves)
+print('result')
+if (a != None):
+	print_grid(a)
+else:
+	print(None)
+print('level = ' ,b)
+print('all moves =', c)
 print('time = ', t2 - t1)
+print()

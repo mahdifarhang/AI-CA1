@@ -1,0 +1,370 @@
+IDS
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 69099
+time =  1.3527603149414062
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 69099
+time =  1.3719322681427002
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 69099
+time =  1.3624153137207031
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 4675728
+time =  93.6774423122406
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 4675728
+time =  92.12081146240234
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 4675728
+time =  96.8819215297699
+
+A*
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5
+time =  0.005225658416748047
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5
+time =  0.005315303802490234
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5
+time =  0.005343914031982422
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 12
+time =  0.013605356216430664
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 12
+time =  0.01392054557800293
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 12
+time =  0.013974189758300781
+
+test_c.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  5
+all moves = 388
+time =  0.5714282989501953
+
+test_c.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  5
+all moves = 388
+time =  0.5639784336090088
+
+test_c.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  5
+all moves = 388
+time =  0.5798804759979248
+
+in1.csv
+result
+O O O X O O O O 
+O X O O O O O O 
+O O O O X O O O 
+O O O O O O O X 
+O O O O O X O O 
+X O O O O O O O 
+O O X O O O O O 
+O O O O O O X O 
+level =  6
+all moves = 1456
+time =  2.6742029190063477
+
+in1.csv
+result
+O O O X O O O O 
+O X O O O O O O 
+O O O O X O O O 
+O O O O O O O X 
+O O O O O X O O 
+X O O O O O O O 
+O O X O O O O O 
+O O O O O O X O 
+level =  6
+all moves = 1456
+time =  2.690265417098999
+
+in1.csv
+result
+O O O X O O O O 
+O X O O O O O O 
+O O O O X O O O 
+O O O O O O O X 
+O O O O O X O O 
+X O O O O O O O 
+O O X O O O O O 
+O O O O O O X O 
+level =  6
+all moves = 1456
+time =  2.6914894580841064
+
+in2.csv
+result
+O O O X O O O O 
+O X O O O O O O 
+O O O O O O O X 
+O O O O O X O O 
+X O O O O O O O 
+O O X O O O O O 
+O O O O X O O O 
+O O O O O O X O 
+level =  7
+all moves = 5804
+time =  23.138031244277954
+
+in3.csv
+result
+O O O O X O O O 
+O O O O O O X O 
+O X O O O O O O 
+O O O O O X O O 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O O X 
+O O O X O O O O 
+level =  7
+all moves = 1169
+time =  2.334923267364502
+
+in3.csv
+result
+O O O O X O O O 
+O O O O O O X O 
+O X O O O O O O 
+O O O O O X O O 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O O X 
+O O O X O O O O 
+level =  7
+all moves = 1169
+time =  2.2809789180755615
+
+in3.csv
+result
+O O O O X O O O 
+O O O O O O X O 
+O X O O O O O O 
+O O O O O X O O 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O O X 
+O O O X O O O O 
+level =  7
+all moves = 1169
+time =  2.3032736778259277
+
+BFS
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5857
+time =  1.6829512119293213
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5857
+time =  1.6810951232910156
+
+test_a.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  3
+all moves = 5857
+time =  1.6597907543182373
+
+test_b.csv
+result
+O X O O O O O O 
+O O O X O O O O 
+O O O O O X O O 
+O O O O O O O X 
+O O X O O O O O 
+X O O O O O O O 
+O O O O O O X O 
+O O O O X O O O 
+level =  4
+all moves = 347100
+time =  1221.316350221634
+
